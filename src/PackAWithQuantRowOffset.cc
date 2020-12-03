@@ -68,28 +68,33 @@ PackAWithQuantRowOffset<T, accT>::PackAWithQuantRowOffset(
         std::tie(BaseType::brow_, BaseType::bcol_, row_interleave_B_) =
             PackingTraits<T, accT, inst_set_t::avx512_vnni>::
               getMatrixPackAParams();
+        std::cout << "1" << std::endl;
         break;
 
       case inst_set_t::avx512_vnni_ymm:
         std::tie(BaseType::brow_, BaseType::bcol_, row_interleave_B_) =
             PackingTraits<T, accT, inst_set_t::avx512_vnni_ymm>::
               getMatrixPackAParams();
+        std::cout << "2" << std::endl;
         break;
 
       case inst_set_t::avx512:
         std::tie(BaseType::brow_, BaseType::bcol_, row_interleave_B_) =
             PackingTraits<T, accT, inst_set_t::avx512>::getMatrixPackAParams();
+        std::cout << "3" << std::endl;
         break;
 
       case inst_set_t::avx512_ymm:
         std::tie(BaseType::brow_, BaseType::bcol_, row_interleave_B_) =
             PackingTraits<T, accT, inst_set_t::avx512_ymm>::
               getMatrixPackAParams();
+        std::cout << "4" << std::endl;
         break;
 
       case inst_set_t::avx2:
         std::tie(BaseType::brow_, BaseType::bcol_, row_interleave_B_) =
             PackingTraits<T, accT, inst_set_t::avx2>::getMatrixPackAParams();
+        std::cout << "5" << std::endl;
         break;
 
       default:

@@ -413,6 +413,25 @@ class FBGEMM_API PackBMatrix final
       const BlockingFactors* params = nullptr);
 
   /**
+   * @param groups if > 1 and trans == NoTranspose, smat is nRow x nCol with
+   *               groups are vertically concatenated: each group is
+   *               (nRow / groups) x nCol .
+   *               if > 1 and trans == Transpose, smat is (nCol * groups) x
+   *               (nRow / groups) with groups are horizontally concatenated:
+   *               each group is nCol x (nRow / groups) . Each group is
+   *               transposed and vertically concatenated to match with the
+   *               NoTranspose case.
+   */
+  PackBMatrix(
+      matrix_op_t trans,
+      std::int32_t nRow,
+      std::int32_t nCol,
+      inpType* prepackedmat,
+      std::int32_t ld,
+      int groups = 1,
+      const BlockingFactors* params = nullptr);
+
+  /**
    * Weight matrices are usually constant so worth pre-packing.
    */
   bool isPrePacked() const {
